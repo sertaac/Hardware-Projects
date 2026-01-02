@@ -1,6 +1,6 @@
 /**************************************/
 /*                                    */
-/*   Backend Service Entry Point      */
+/*     Backend Service Entry Point    */
 /*     Frutiger Aero + Y2K Edition    */
 /*           Programmed by            */
 /*            Sertaç Ataç             */
@@ -24,7 +24,7 @@ import (
 
 /**************************************************/
 /*                                                */
-/*              CONSTANTS                         */
+/*                   CONSTANTS                    */
 /*                                                */
 /**************************************************/
 
@@ -35,14 +35,14 @@ const (
 
 /**************************************************/
 /*                                                */
-/*              MAIN FUNCTION                     */
+/*                 MAIN FUNCTION                  */
 /*                                                */
 /**************************************************/
 
 func main() {
 	fmt.Println("╔════════════════════════════════════════╗")
-	fmt.Println("║   🎮 RETRO GAMING HUB - BACKEND        ║")
-	fmt.Println("║   Frutiger Aero • Y2K Edition          ║")
+	fmt.Println("║    RETRO GAMING HUB - BACKEND          ║")
+	fmt.Println("║    Frutiger Aero • Y2K Edition         ║")
 	fmt.Println("╚════════════════════════════════════════╝")
 
 	/*          Get config directory              */
@@ -54,7 +54,7 @@ func main() {
 
 	/*           Initialize library               */
 	lib := library.NewLibrary(configPath)
-	fmt.Printf("📚 Library loaded from: %s\n", configPath)
+	fmt.Printf("Library loaded from: %s\n", configPath)
 
 	/*           Create IPC server                */
 	ipcServer := server.NewIPCServer(IPC_PORT)
@@ -66,7 +66,7 @@ func main() {
 
 	/*              Start server                  */
 	if err := ipcServer.Start(); err != nil {
-		fmt.Printf("❌ Failed to start server: %v\n", err)
+		fmt.Printf("Failed to start server: %v\n", err)
 		os.Exit(1)
 	}
 
@@ -74,18 +74,18 @@ func main() {
 	sigChan := make(chan os.Signal, 1)
 	signal.Notify(sigChan, syscall.SIGINT, syscall.SIGTERM)
 
-	fmt.Println("\n✅ Backend running. Press Ctrl+C to stop.")
+	fmt.Println("\nBackend running. Press Ctrl+C to stop.")
 	<-sigChan
 
-	fmt.Println("\n🛑 Shutting down...")
+	fmt.Println("\nShutting down...")
 	ipcServer.Stop()
 	lib.Save()
-	fmt.Println("👋 Goodbye!")
+	fmt.Println("Goodbye!")
 }
 
 /**************************************************/
 /*                                                */
-/*          REQUEST HANDLER                       */
+/*               REQUEST HANDLER                  */
 /*                                                */
 /**************************************************/
 
