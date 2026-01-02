@@ -119,7 +119,7 @@ func (s *IPCServer) Start() error {
 
 	s.listener = listener
 	s.running = true
-	fmt.Printf("🎮 IPC Server started on %s\n", addr)
+	fmt.Printf("IPC Server started on %s\n", addr)
 	go s.acceptConnections()
 	return nil
 }
@@ -136,7 +136,7 @@ func (s *IPCServer) Stop() {
 	if s.listener != nil {
 		s.listener.Close()
 	}
-	fmt.Println("🛑 IPC Server stopped")
+	fmt.Println("IPC Server stopped")
 }
 
 /**************************************************/
@@ -156,7 +156,7 @@ func (s *IPCServer) acceptConnections() {
 		s.clients[conn] = true
 		s.mu.Unlock()
 
-		fmt.Printf("📱 Client connected: %s\n", conn.RemoteAddr())
+		fmt.Printf("Client connected: %s\n", conn.RemoteAddr())
 		go s.handleClient(conn)
 	}
 }
